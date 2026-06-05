@@ -17,10 +17,10 @@
 
         .container{
             background-color: white;
-            padding: 20px;
+            padding: 80px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            width: 359px;
         }
 
         button{
@@ -43,18 +43,58 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: #f0f0f0;
+            padding: 15px;
+            border: 2px solid #03fbda;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-
-        .completed{
-            text-decoration: line-through;
-            color: gray;
+        div.container{
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(9, 9, 9, 0.1);
+            width: 440px ;
+            min-height: 200px;
+            border: 1px solid #242222;
+        }
+        div.container h1{
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 2px;
+            color: #f605b9;
+        }
+        div input{
+            width: 54%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #03fbda;
+            border-radius: 5px;
+            padding-right: 10px;
+            font-size: 16px;
+        }
+        div button{
+            padding: 10px 20px;
+            background-color: #b480f8;
+            color: rgb(7, 7, 7);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(99, 88, 246, 0.5);
+            font-size: 16px;
+            border: 2px solid #242222;
+        }
+        div button:hover{
+            background-color: #fc73c3;
+            box-shadow: 0 0 10px rgba(32, 32, 33, 0.7);
+            border: 2px solid #242222; 
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>To-Do List</h1>
+        <h1>To-Do List 📝</h1>
 
         <input type="text" id="taskInput" placeholder="Enter a new task">
         <button id="addTaskButton">Add Task</button>
