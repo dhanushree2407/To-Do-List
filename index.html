@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: rgb(10, 229, 241);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container{
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        button{
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+
+        li{
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .completed{
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button id="addTaskButton">Add Task</button>
+
+        <h2>Points: <span id="points">0</span></h2>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        let points = 0;
+
+        const taskInput = document.getElementById("taskInput");
+        const addTaskButton = document.getElementById("addTaskButton");
+        const taskList = document.getElementById("taskList");
+        const pointsDisplay = document.getElementById("points");
+
+        addTaskButton.addEventListener("click", function () {
+            const taskText = taskInput.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            const li = document.createElement("li");
+
+            const taskSpan = document.createElement("span");
+            taskSpan.textContent = taskText;
+
+            const completeButton = document.createElement("button");
+            completeButton.textContent = "Done";
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.style.display = "none";
+            completeButton.style.display = "inline-block";
+
+            completeButton.addEventListener("click", function () {
+                taskSpan.classList.add("completed");
+                // award points only when marking completed
+                if (!taskSpan.dataset.completed) {
+                    points += 10;
+                    taskSpan.dataset.completed = "true";
+                }
+
+                completeButton.style.display = "none";
+                deleteButton.style.display = "inline-block";
+                pointsDisplay.textContent = points;
+            });
+
+            // allow toggling back by clicking the task text itself (optional)
+            taskSpan.addEventListener("click", function () {
+                if (taskSpan.classList.contains("completed")) {
+                    // un-complete: show Done, hide Delete, do not change points
+                    taskSpan.classList.remove("completed");
+                    deleteButton.style.display = "none";
+                    completeButton.style.display = "inline-block";
+                    delete taskSpan.dataset.completed;
+                }
+            });
+
+            deleteButton.addEventListener("click", function () {
+                li.remove();
+            });
+
+            li.appendChild(taskSpan);
+            li.appendChild(completeButton);
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+        });
+    </script>
+</body>
+</html>
